@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"l":"org.example.app"},{"l":"org.example.controller"},{"l":"org.example.model.daos"},{"l":"org.example.model.entities"},{"l":"org.example.model.exceptions"},{"l":"org.example.model.impls"},{"l":"org.example.view"}]
