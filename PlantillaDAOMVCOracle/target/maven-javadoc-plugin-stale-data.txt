@@ -1,0 +1,60 @@
+@options
+@packages
+-classpath
+'/home/alumne/.m2/repository/com/oracle/ojdbc8/18.4/ojdbc8-18.4.jar'
+-encoding
+'UTF-8'
+-protected
+-source
+'11'
+-sourcepath
+'/home/alumne/Escriptori/Programació/UF6/mp3-uf6-projecte-naatalianowak/PlantillaDAOMVCOracle/src/main/java:/home/alumne/Escriptori/Programació/UF6/mp3-uf6-projecte-naatalianowak/PlantillaDAOMVCOracle/target/generated-sources/annotations'
+-author
+-bottom
+'Copyright &#169; 2024. All rights reserved.'
+-charset
+'UTF-8'
+-d
+'/home/alumne/Escriptori/Programació/UF6/mp3-uf6-projecte-naatalianowak/PlantillaDAOMVCOracle/target/apidocs'
+-docencoding
+'UTF-8'
+-doctitle
+'PlantillaDAOMVCOracle 1.0-SNAPSHOT API'
+-linkoffline
+'https://docs.oracle.com/en/java/javase/11/docs/api' '/home/alumne/Escriptori/Programació/UF6/mp3-uf6-projecte-naatalianowak/PlantillaDAOMVCOracle/target/javadoc-bundle-options'
+-use
+-version
+-windowtitle
+'PlantillaDAOMVCOracle 1.0-SNAPSHOT API'
+org.example.controller
+org.example.view
+org.example.model.entities
+org.example.model.impls
+org.example.model.daos
+org.example.model.exceptions
+org.example.app
+/home/alumne/.m2/repository/com/oracle/ojdbc8/18.4/ojdbc8-18.4.jar = 1530042606000
+/home/alumne/Escriptori/Programació/UF6/mp3-uf6-projecte-naatalianowak/PlantillaDAOMVCOracle/src/main/java = 1716281830806
+/home/alumne/Escriptori/Programació/UF6/mp3-uf6-projecte-naatalianowak/PlantillaDAOMVCOracle/target/generated-sources/annotations = 1716284946297
+/home/alumne/Escriptori/Programació/UF6/mp3-uf6-projecte-naatalianowak/PlantillaDAOMVCOracle/target/apidocs/type-search-index.zip = 1716885300033
+/home/alumne/Escriptori/Programació/UF6/mp3-uf6-projecte-naatalianowak/PlantillaDAOMVCOracle/target/apidocs/allclasses.html = 1716885300041
+/home/alumne/Escriptori/Programació/UF6/mp3-uf6-projecte-naatalianowak/PlantillaDAOMVCOracle/target/apidocs/jquery-ui.overrides.css = 1716885300049
+/home/alumne/Escriptori/Programació/UF6/mp3-uf6-projecte-naatalianowak/PlantillaDAOMVCOracle/target/apidocs/overview-tree.html = 1716885300017
+/home/alumne/Escriptori/Programació/UF6/mp3-uf6-projecte-naatalianowak/PlantillaDAOMVCOracle/target/apidocs/serialized-form.html = 1716885299993
+/home/alumne/Escriptori/Programació/UF6/mp3-uf6-projecte-naatalianowak/PlantillaDAOMVCOracle/target/apidocs/script.js = 1716885300045
+/home/alumne/Escriptori/Programació/UF6/mp3-uf6-projecte-naatalianowak/PlantillaDAOMVCOracle/target/apidocs/package-search-index.zip = 1716885300033
+/home/alumne/Escriptori/Programació/UF6/mp3-uf6-projecte-naatalianowak/PlantillaDAOMVCOracle/target/apidocs/constant-values.html = 1716885299989
+/home/alumne/Escriptori/Programació/UF6/mp3-uf6-projecte-naatalianowak/PlantillaDAOMVCOracle/target/apidocs/member-search-index.js = 1716885300033
+/home/alumne/Escriptori/Programació/UF6/mp3-uf6-projecte-naatalianowak/PlantillaDAOMVCOracle/target/apidocs/member-search-index.zip = 1716885300033
+/home/alumne/Escriptori/Programació/UF6/mp3-uf6-projecte-naatalianowak/PlantillaDAOMVCOracle/target/apidocs/overview-summary.html = 1716885300045
+/home/alumne/Escriptori/Programació/UF6/mp3-uf6-projecte-naatalianowak/PlantillaDAOMVCOracle/target/apidocs/stylesheet.css = 1716885300045
+/home/alumne/Escriptori/Programació/UF6/mp3-uf6-projecte-naatalianowak/PlantillaDAOMVCOracle/target/apidocs/search.js = 1716885300049
+/home/alumne/Escriptori/Programació/UF6/mp3-uf6-projecte-naatalianowak/PlantillaDAOMVCOracle/target/apidocs/index-all.html = 1716885300033
+/home/alumne/Escriptori/Programació/UF6/mp3-uf6-projecte-naatalianowak/PlantillaDAOMVCOracle/target/apidocs/element-list = 1716885299973
+/home/alumne/Escriptori/Programació/UF6/mp3-uf6-projecte-naatalianowak/PlantillaDAOMVCOracle/target/apidocs/index.html = 1716885300045
+/home/alumne/Escriptori/Programació/UF6/mp3-uf6-projecte-naatalianowak/PlantillaDAOMVCOracle/target/apidocs/help-doc.html = 1716885300045
+/home/alumne/Escriptori/Programació/UF6/mp3-uf6-projecte-naatalianowak/PlantillaDAOMVCOracle/target/apidocs/allclasses-index.html = 1716885300037
+/home/alumne/Escriptori/Programació/UF6/mp3-uf6-projecte-naatalianowak/PlantillaDAOMVCOracle/target/apidocs/allpackages-index.html = 1716885300037
+/home/alumne/Escriptori/Programació/UF6/mp3-uf6-projecte-naatalianowak/PlantillaDAOMVCOracle/target/apidocs/package-search-index.js = 1716885300029
+/home/alumne/Escriptori/Programació/UF6/mp3-uf6-projecte-naatalianowak/PlantillaDAOMVCOracle/target/apidocs/deprecated-list.html = 1716885300041
+/home/alumne/Escriptori/Programació/UF6/mp3-uf6-projecte-naatalianowak/PlantillaDAOMVCOracle/target/apidocs/type-search-index.js = 1716885300033

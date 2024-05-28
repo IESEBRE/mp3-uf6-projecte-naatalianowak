@@ -3,7 +3,10 @@ package org.example.view;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
-public class MatriculaView extends JFrame{
+public class VideoclipView extends JFrame{
+    /**
+     * Atributs de la classe
+     */
     private JTabbedPane pestanyes;
     private JTable taula;
     private JScrollPane scrollPane1;
@@ -11,27 +14,24 @@ public class MatriculaView extends JFrame{
     private JButton modificarButton;
     private JButton borrarButton;
     private JTextField campNom;
-    private JTextField campPes;
-    private JCheckBox caixaAlumne;
+    private JTextField campDurada;
     private JPanel panel;
     private JTable taulaMat;
-    private JComboBox comboMP;
-    private JTextField campNota;
-    //private JTabbedPane PanelPestanya;
+    private JComboBox comboPais;
+    private JTextField campAny;
 
     //Getters
-
 
     public JTable getTaulaMat() {
         return taulaMat;
     }
 
-    public JComboBox getComboMP() {
-        return comboMP;
+    public JComboBox getComboPais() {
+        return comboPais;
     }
 
-    public JTextField getCampNota() {
-        return campNota;
+    public JTextField getCampAny() {
+        return campAny;
     }
 
     public JTabbedPane getPestanyes() {
@@ -58,18 +58,16 @@ public class MatriculaView extends JFrame{
         return campNom;
     }
 
-    public JTextField getCampPes() {
-        return campPes;
-    }
-
-    public JCheckBox getCaixaAlumne() {
-        return caixaAlumne;
+    public JTextField getCampDurada() {
+        return campDurada;
     }
 
 
-    //Constructor de la classe
-    public MatriculaView() {
 
+    public VideoclipView() {
+        /**
+         * Constructor de la classe
+         */
 
         //Per poder vore la finestra
         this.setContentPane(panel);
@@ -86,6 +84,10 @@ public class MatriculaView extends JFrame{
         taula.setModel(new DefaultTableModel());
         taula.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
         scrollPane1.setViewportView(taula);
+        //tamany del JPanel
+        panel = new JPanel();
+        panel.setSize(800, 600);
+
 
     }
 }

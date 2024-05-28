@@ -13,6 +13,11 @@ public interface DAO <T>{
 
     void save(T obj) throws DAOException;
 
+    void update(T obj) throws DAOException;
+
+    void delete(Long id) throws DAOException;
+
     //Tots els mètodes necessaris per interactuar en la BD
+
 
 }
