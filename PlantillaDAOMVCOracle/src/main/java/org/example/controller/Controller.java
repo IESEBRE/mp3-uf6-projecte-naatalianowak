@@ -114,6 +114,7 @@ public class Controller implements PropertyChangeListener {
 
         JTextField campNom = view.getCampNom();
         JTextField campDurada = view.getCampDurada();
+       // JCheckBox caixaSingle = view.getCaixaSin();
         JTabbedPane pestanyes = view.getPestanyes();
 
         JTextField campAny = view.getCampAny();
@@ -133,7 +134,8 @@ public class Controller implements PropertyChangeListener {
                     public void actionPerformed(ActionEvent e) {
                         JTextField campNom = view.getCampNom();
                         JTextField campDurada = view.getCampDurada();
-                      //  JCheckBox caixaSingle = view.getCaixaSingle();
+
+                     // JCheckBox caixaSingle = view.getCaixaSingle();
 
                         if (pestanyes.getSelectedIndex() == 0) {        //Si estem a la pestanya de cançó
                             //Comprovem que totes les caselles continguen informació
@@ -335,7 +337,7 @@ public class Controller implements PropertyChangeListener {
         });
 
         //Restriccions
-        //Fem que campNom nomes puga contindre lletres
+        //Fem que campNom nomes puga contindre lletres.
         campNom.addKeyListener(new KeyAdapter() {
             /**
              * Invoked when a key has been typed.
@@ -345,18 +347,40 @@ public class Controller implements PropertyChangeListener {
              * @param e
              */
             @Override
-
             public void keyTyped(KeyEvent e) {
                 super.keyTyped(e);
-                if (!Character.isLetter(e.getKeyChar()) && e.getKeyChar() != KeyEvent.VK_SPACE && e.getKeyChar() != KeyEvent.VK_BACK_SPACE && e.getKeyChar() != KeyEvent.VK_DELETE){
-                   JPanel panel = new JPanel();
-                    JOptionPane.showMessageDialog(panel, "Aquest camp no pot contindre números", "Error", JOptionPane.ERROR_MESSAGE);
+
+                JTextField textField = (JTextField) e.getSource();
+                String text = textField.getText();
+
+                char keyChar = e.getKeyChar();
+
+                String regex = "^[A-Z][a-zA-Z]*$";
+
+                if (Character.isLetter(keyChar)) {
+                    text += keyChar;
+                } else if (keyChar == KeyEvent.VK_BACK_SPACE || keyChar == KeyEvent.VK_DELETE) {
+                    return;
+                } else {
+                    mostrarMensajeError();
+                    e.consume();
+                    setExcepcio(new DAOException(2));
+                    return;
+                }
+
+                if (!text.matches(regex)) {
+                    mostrarMensajeError();
                     e.consume();
                     setExcepcio(new DAOException(34));
                 }
             }
 
+            private void mostrarMensajeError() {
+                JPanel panel = new JPanel();
+                JOptionPane.showMessageDialog(panel, "Aquest camp té que començar en MAJÚSCULA i només pot contindre lletres.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
         });
+
 
         //Fem que campDurada nomes puga contindre números
         campDurada.addKeyListener(new KeyAdapter() {

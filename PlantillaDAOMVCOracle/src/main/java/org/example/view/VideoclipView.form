@@ -78,6 +78,7 @@
                 </constraints>
                 <properties>
                   <background color="-1782785"/>
+                  <text value=""/>
                 </properties>
               </component>
               <component id="b3fcc" class="javax.swing.JLabel">

@@ -4,9 +4,14 @@ import org.example.model.daos.DAO;
 import org.example.model.entities.Canço;
 import org.example.model.exceptions.DAOException;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 import java.util.TreeSet;
 
 public class CancoDAOJDBCOracleImpl implements DAO<Canço> {
@@ -30,13 +35,20 @@ public class CancoDAOJDBCOracleImpl implements DAO<Canço> {
         ResultSet rs = null;
         Canço obra = null;
 
+        Properties prop = new Properties();
+        InputStream input;
+
         //Accés a la BD usant l'API JDBC
         try {
+            input = new FileInputStream("./src/main/resources/DataBase.properties");
+            prop.load(input);
+
+            String url = prop.getProperty("db.url");
+            String user = prop.getProperty("db.user");
+            String password = prop.getProperty("db.password");
 
             con = DriverManager.getConnection(
-                    "jdbc:oracle:thin:@//localhost:1521/xe",
-                    "C##HR",
-                    "HR"
+                    url, user, password
             );
             st = con.createStatement();
 
@@ -47,6 +59,10 @@ public class CancoDAOJDBCOracleImpl implements DAO<Canço> {
             }
         } catch (SQLException throwables) {
             throw new DAOException(1);
+        } catch (FileNotFoundException ex) {
+            throw new DAOException(60);
+        } catch (IOException ex) {
+            throw new DAOException(101);
         } finally {
             try {
                 if (rs != null) rs.close();
@@ -69,16 +85,25 @@ public class CancoDAOJDBCOracleImpl implements DAO<Canço> {
          */
         //Declaració de variables del mètode
         List<Canço> obras = new ArrayList<>();
+        Connection con = null;
+        PreparedStatement st = null;
+        ResultSet rs = null;
+
+        Properties prop = new Properties();
+        InputStream input;
 
         //Accés a la BD usant l'API JDBC
-        try (Connection con = DriverManager.getConnection(
-                "jdbc:oracle:thin:@//localhost:1521/xe",
-                "C##HR",
-                "HR"
-        );
-             PreparedStatement st = con.prepareStatement("SELECT * FROM CANÇO");
-             ResultSet rs = st.executeQuery();
-        ) {
+        try {
+            input = new FileInputStream("./src/main/resources/DataBase.properties");
+            prop.load(input);
+
+            String url = prop.getProperty("db.url");
+            String user = prop.getProperty("db.user");
+            String password = prop.getProperty("db.password");
+
+            con = DriverManager.getConnection(url, user, password);
+            st = con.prepareStatement("SELECT * FROM CANÇO");
+            rs = st.executeQuery();
 
             while (rs.next()) {
                 obras.add(new Canço(rs.getLong("id"), rs.getString("nom"), rs.getDouble("durada"),
@@ -86,20 +111,30 @@ public class CancoDAOJDBCOracleImpl implements DAO<Canço> {
             }
         } catch (SQLException throwables) {
             int tipoError = throwables.getErrorCode();
-            //System.out.println(tipoError+" "+throwables.getMessage());
-            switch (throwables.getErrorCode()) {
-                case 17002: //l'he obtingut posant un sout en el throwables.getErrorCode()
+            switch (tipoError) {
+                case 17002: 
                     tipoError = 0;
                     break;
                 default:
                     tipoError = 1;  //error desconegut
             }
             throw new DAOException(tipoError);
+        } catch (FileNotFoundException ex) {
+            throw new DAOException(60);
+        } catch (IOException ex) {
+            throw new DAOException(101);
+        } finally {
+            try {
+                if (rs != null) rs.close();
+                if (st != null) st.close();
+                if (con != null) con.close();
+            } catch (SQLException e) {
+                throw new DAOException(1);
+            }
         }
-
-
         return obras;
     }
+
 
     public Long getLastId() throws DAOException {
         /**
@@ -112,11 +147,19 @@ public class CancoDAOJDBCOracleImpl implements DAO<Canço> {
         ResultSet rs = null;
         Long lastId = null;
 
+        Properties prop = new Properties();
+        InputStream input;
+
         try {
+            input = new FileInputStream("./src/main/resources/DataBase.properties");
+            prop.load(input);
+
+            String url = prop.getProperty("db.url");
+            String user = prop.getProperty("db.user");
+            String password = prop.getProperty("db.password");
+
             con = DriverManager.getConnection(
-                    "jdbc:oracle:thin:@//localhost:1521/xe",
-                    "C##HR",
-                    "HR"
+                    url, user, password
             );
             st = con.createStatement();
             rs = st.executeQuery("SELECT MAX(id) AS MAX_ID FROM CANÇO");
@@ -126,6 +169,10 @@ public class CancoDAOJDBCOracleImpl implements DAO<Canço> {
             }
         } catch (SQLException throwables) {
             throw new DAOException(1);
+        } catch (FileNotFoundException ex) {
+            throw new DAOException(60);
+        } catch (IOException ex) {
+            throw new DAOException(101);
         } finally {
             try {
                 if (rs != null) rs.close();
@@ -149,6 +196,9 @@ public class CancoDAOJDBCOracleImpl implements DAO<Canço> {
         Connection con = null;
         PreparedStatement st = null;
 
+        Properties prop = new Properties();
+        InputStream input;
+
         //obj no null
         if (obj == null) throw new DAOException(1);
 
@@ -164,11 +214,17 @@ public class CancoDAOJDBCOracleImpl implements DAO<Canço> {
 
         //Accés a la BD usant l'API JDBC
         try {
+            input = new FileInputStream("./src/main/resources/DataBase.properties");
+            prop.load(input);
+
+            String url = prop.getProperty("db.url");
+            String user = prop.getProperty("db.user");
+            String password = prop.getProperty("db.password");
+
             con = DriverManager.getConnection(
-                    "jdbc:oracle:thin:@//localhost:1521/xe",
-                    "C##HR",
-                    "HR"
+                    url, user, password
             );
+
             System.out.println("Conexió realitzada " + (con != null));
             st = con.prepareStatement("INSERT INTO CANÇO(ID, NOM, DURADA) VALUES(?,?,?)");
             st.setLong(1, obj.getId());
@@ -177,6 +233,10 @@ public class CancoDAOJDBCOracleImpl implements DAO<Canço> {
             st.executeUpdate();
         } catch (SQLException throwables) {
             throw new DAOException(1);
+        } catch (FileNotFoundException ex) {
+            throw new DAOException(60);
+        } catch (IOException ex) {
+            throw new DAOException(101);
         } finally {
             try {
                 if (st != null) st.close();
@@ -201,12 +261,21 @@ public class CancoDAOJDBCOracleImpl implements DAO<Canço> {
         //obj no null
         if (obj == null) throw new DAOException(36);
 
+        Properties prop = new Properties();
+
+        InputStream input;
+
         //Accés a la BD usant l'API JDBC
         try {
+            input = new FileInputStream("./src/main/resources/DataBase.properties");
+            prop.load(input);
+
+            String url = prop.getProperty("db.url");
+            String user = prop.getProperty("db.user");
+            String password = prop.getProperty("db.password");
+
             con = DriverManager.getConnection(
-                    "jdbc:oracle:thin:@//localhost:1521/xe",
-                    "C##HR",
-                    "HR"
+                    url, user, password
             );
             System.out.println("Conexió realitzada " + (con != null));
             st = con.prepareStatement("UPDATE CANÇO SET NOM=?, DURADA=? WHERE ID=?");
@@ -218,7 +287,12 @@ public class CancoDAOJDBCOracleImpl implements DAO<Canço> {
             int actualitzat = st.executeUpdate();
             System.out.println("Cançó actualitzada: " + actualitzat);
 
-
+        } catch (FileNotFoundException ex) {
+            System.out.println("Fitxer no trobat: " + ex.getMessage());
+            throw new DAOException(60);
+        } catch (IOException ex){
+            System.out.println("Error d'entrada/sortida: " + ex.getMessage());
+            throw new DAOException(101);
         } catch (SQLException throwables) {
             System.out.println("Exepció SQL: " + throwables.getMessage());
             throw new DAOException(1);
@@ -245,12 +319,20 @@ public class CancoDAOJDBCOracleImpl implements DAO<Canço> {
         Connection con = null;
         PreparedStatement st = null;
 
+        Properties prop = new Properties();
+        InputStream input;
+
         //Accés a la BD usant l'API JDBC
         try {
+            input = new FileInputStream("./src/main/resources/DataBase.properties");
+            prop.load(input);
+
+            String url = prop.getProperty("db.url");
+            String user = prop.getProperty("db.user");
+            String password = prop.getProperty("db.password");
+
             con = DriverManager.getConnection(
-                    "jdbc:oracle:thin:@//localhost:1521/xe",
-                    "C##HR",
-                    "HR"
+                    url, user, password
             );
 
             st = con.prepareStatement("DELETE FROM CANÇO WHERE ID=?");
@@ -261,6 +343,10 @@ public class CancoDAOJDBCOracleImpl implements DAO<Canço> {
             System.out.println("Cançó eliminada.");
         } catch (SQLException throwables) {
             throw new DAOException(1);
+        } catch (FileNotFoundException ex) {
+            throw new DAOException(60);
+        } catch (IOException ex) {
+            throw new DAOException(101);
         } finally {
             try {
                 if (st != null) st.close();

@@ -20,6 +20,11 @@ public class VideoclipView extends JFrame{
     private JComboBox comboPais;
     private JTextField campAny;
 
+
+
+    //private JCheckBox caixaSin;
+
+
     //Getters
 
     public JTable getTaulaMat() {
@@ -37,6 +42,10 @@ public class VideoclipView extends JFrame{
     public JTabbedPane getPestanyes() {
         return pestanyes;
     }
+
+  //  public JCheckBox getCaixaSin() {
+   //     return caixaSin;
+   // }
 
     public JTable getTaula() {
         return taula;
