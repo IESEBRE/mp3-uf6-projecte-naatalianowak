@@ -1,0 +1,7 @@
+org.example.app
+org.example.controller
+org.example.model.daos
+org.example.model.entities
+org.example.model.exceptions
+org.example.model.impls
+org.example.view
